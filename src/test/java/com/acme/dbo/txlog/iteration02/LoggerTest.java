@@ -1,8 +1,10 @@
 package com.acme.dbo.txlog.iteration02;
 
+import com.acme.dbo.txlog.Facade;
 import com.acme.dbo.txlog.SysoutCaptureAndAssertionAbility;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 import java.io.IOException;
 
@@ -21,9 +23,6 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     //endregion
 
 
-    /*
-    TODO: implement Logger solution to match specification as tests
-
     @Test
     public void shouldLogSequentIntegersAsSum() throws IOException {
         //region when
@@ -31,15 +30,17 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Facade.log(1);
         Facade.log(2);
         Facade.log("str 2");
+        Facade.flush();
         Facade.log(0);
+        Facade.flush();
         //endregion
 
         //region then
         assertSysoutEquals(
-            "str 1\n" +
-            "3\n" +
-            "str 2\n" +
-            "0\n"
+                "string: str 1\n" +
+                        "primitive: 3\n" +
+                        "string: str 2\n" +
+                        "primitive: 0\n"
         );
         //endregion
     }
@@ -52,15 +53,16 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Facade.log(Integer.MAX_VALUE);
         Facade.log("str 2");
         Facade.log(0);
+        Facade.flush();
         //endregion
 
         //region then
         assertSysoutEquals(
-            "str 1\n" +
-            "10\n" +
-            Integer.MAX_VALUE + "\n" +
-            "str 2\n" +
-            "0\n"
+                "string: str 1\n" +
+                        "primitive: 10\n" +
+                        "primitive: "+Integer.MAX_VALUE + "\n" +
+                        "string: str 2\n" +
+                        "primitive: 0\n"
         );
         //endregion
     }
@@ -73,15 +75,16 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Facade.log((byte)Byte.MAX_VALUE);
         Facade.log("str 2");
         Facade.log(0);
+        Facade.flush();
         //endregion
 
         //region then
         assertSysoutEquals(
-            "str 1\n" +
-            "10\n" +
-            Byte.MAX_VALUE + "\n" +
-            "str 2\n" +
-            "0\n"
+            "string: str 1\n" +
+            "primitive: 10\n" +
+            "primitive: "+Byte.MAX_VALUE + "\n" +
+            "string: str 2\n" +
+            "primitive: 0\n"
         );
         //endregion
     }
@@ -97,18 +100,18 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Facade.log("str 3");
         Facade.log("str 3");
         Facade.log("str 3");
+        Facade.flush();
         //endregion
 
         //region then
         assertSysoutEquals(
-            "str 1\n" +
-            "str 2 (x2)\n" +
-            "0\n" +
-            "str 2\n" +
-            "str 3 (x3)\n"
+            "string: str 1\n" +
+            "string: str 2 (x2)\n" +
+            "primitive: 0\n" +
+            "string: str 2\n" +
+            "string: str 3 (x3)\n"
         );
         //endregion
     }
 
-    */
 }
